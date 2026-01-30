@@ -10,6 +10,8 @@ interface NarrativeState {
     bookmarks: string[]; // Step IDs
     language: 'en' | 'am';
     isSummaryOpen: boolean;
+    isMuted: boolean;
+    volume: number;
 
     // Actions
     setAct: (id: string) => void;
@@ -23,6 +25,8 @@ interface NarrativeState {
     setLanguage: (lang: 'en' | 'am') => void;
     jumpTo: (actId: string, chapterId: string, stepIndex: number) => void;
     setSummaryOpen: (open: boolean) => void;
+    toggleMute: () => void;
+    setVolume: (v: number) => void;
 }
 
 export const useNarrativeStore = create<NarrativeState>()(
@@ -36,6 +40,8 @@ export const useNarrativeStore = create<NarrativeState>()(
             bookmarks: [],
             language: 'en',
             isSummaryOpen: false,
+            isMuted: true,
+            volume: 0.2,
 
 
             setAct: (id) => {
@@ -86,6 +92,8 @@ export const useNarrativeStore = create<NarrativeState>()(
             }),
 
             setSummaryOpen: (open) => set({ isSummaryOpen: open }),
+            toggleMute: () => set((state) => ({ isMuted: !state.isMuted })),
+            setVolume: (v) => set({ volume: v }),
         }),
         {
             name: 'truth-narrative-progress',
