@@ -1,4 +1,4 @@
-export type StepType = 'narrative' | 'dialogue' | 'question' | 'revelation' | 'scripture' | 'logic' | 'debate' | 'quote' | 'analysis';
+export type StepType = 'narrative' | 'dialogue' | 'question' | 'revelation' | 'scripture' | 'logic' | 'debate' | 'quote' | 'analysis' | 'reflection';
 
 export interface Reference {
   book?: string;
@@ -30,6 +30,17 @@ export interface AnalysisStep {
   analysis: string; // Detailed breakdown
 }
 
+export interface ChoiceOption {
+  label: string;
+  text: string;
+  jumpTo?: string; // Optional step ID to jump to
+}
+
+export interface ReflectionData {
+  question: string;
+  options: ChoiceOption[];
+}
+
 export interface VisualMetadata {
   background?: string;
   animation?: string;
@@ -56,6 +67,7 @@ export interface Step {
   };
   quote?: QuoteData;
   analysis?: AnalysisStep;
+  reflection?: ReflectionData;
 }
 
 export interface Chapter {

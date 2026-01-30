@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Ethiopic:wght@400;700&family=Playfair+Display:italic,wght@0,400;0,700;1,400&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -21,7 +22,6 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   overflow: hidden;
-  /* Prevent scrolling for the immersive experience */
 }
 
 h1,
@@ -29,6 +29,12 @@ h2,
 h3,
 .serif {
   font-family: var(--font-serif);
+}
+
+.font-amharic {
+  font-family: 'Noto Sans Ethiopic', sans-serif !important;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
 }
 
 .typewriter-cursor::after {

@@ -90,6 +90,26 @@ export const ACT_II: Act = {
                     id: 'step-3-4',
                     type: 'narrative',
                     content: 'The problem is not the existence of Christ. The problem is the division of those who follow Him.',
+                },
+                {
+                    id: 'step-3-5',
+                    type: 'reflection',
+                    content: 'Choose Your Focus',
+                    reflection: {
+                        question: 'Where should your investigation begin?',
+                        options: [
+                            {
+                                label: 'The Great Fracture',
+                                text: 'The 16th century changed everything. Let us look at the Reformation.',
+                                jumpTo: 'step-4-1'
+                            },
+                            {
+                                label: 'The Ancient Claim',
+                                text: 'Before the fractures, there was a single body. We must examine Rome.',
+                                jumpTo: 'step-11-1'
+                            }
+                        ]
+                    }
                 }
             ]
         }

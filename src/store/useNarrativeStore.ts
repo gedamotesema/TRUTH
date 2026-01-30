@@ -7,6 +7,9 @@ interface NarrativeState {
     currentStepIndex: number;
     isTransitioning: boolean;
     isLoading: boolean;
+    bookmarks: string[]; // Step IDs
+    language: 'en' | 'am';
+    isSummaryOpen: boolean;
 
     // Actions
     setAct: (id: string) => void;
@@ -16,6 +19,10 @@ interface NarrativeState {
     prevStep: () => void;
     setTransitioning: (status: boolean) => void;
     resetProgress: () => void;
+    toggleBookmark: (stepId: string) => void;
+    setLanguage: (lang: 'en' | 'am') => void;
+    jumpTo: (actId: string, chapterId: string, stepIndex: number) => void;
+    setSummaryOpen: (open: boolean) => void;
 }
 
 export const useNarrativeStore = create<NarrativeState>()(
@@ -26,6 +33,9 @@ export const useNarrativeStore = create<NarrativeState>()(
             currentStepIndex: 0,
             isTransitioning: false,
             isLoading: false,
+            bookmarks: [],
+            language: 'en',
+            isSummaryOpen: false,
 
 
             setAct: (id) => {
@@ -55,6 +65,27 @@ export const useNarrativeStore = create<NarrativeState>()(
                 currentChapterId: null,
                 currentStepIndex: 0,
             }),
+
+            toggleBookmark: (stepId) => {
+                set((state) => {
+                    const isBookmarked = state.bookmarks.includes(stepId);
+                    return {
+                        bookmarks: isBookmarked
+                            ? state.bookmarks.filter(id => id !== stepId)
+                            : [...state.bookmarks, stepId]
+                    };
+                });
+            },
+
+            setLanguage: (lang) => set({ language: lang }),
+
+            jumpTo: (actId, chapterId, stepIndex) => set({
+                currentActId: actId,
+                currentChapterId: chapterId,
+                currentStepIndex: stepIndex
+            }),
+
+            setSummaryOpen: (open) => set({ isSummaryOpen: open }),
         }),
         {
             name: 'truth-narrative-progress',
